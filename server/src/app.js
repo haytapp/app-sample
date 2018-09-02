@@ -11,12 +11,6 @@ const morgan = require('morgan')
 // dB handling
 //const {sequelize} = require ('./models')
 var models = require ('./models')
-//const Sequelize = require('sequelize')
-// const sequelize = new Sequelize('test1', 'root', 'CholulaX2004!', {
-//   host: 'localhost',
-//   dialect: 'mysql',
-//   operatorsAliases: false
-// })
 
 // Check the dB connection...
 models.sequelize.authenticate()

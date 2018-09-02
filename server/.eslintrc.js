@@ -20,7 +20,7 @@ module.exports = {
 
     "parserOptions": {
 
-        "ecmaVersion": 6,                       // set to 3, 5 (default), 6, 7, or 8 to specify the version of ECMAScript syntax you want to use.
+        "ecmaVersion": 8,                       // set to 3, 5 (default), 6, 7, or 8 to specify the version of ECMAScript syntax you want to use.
         //                                         // You can also set to 2015 (same as 6), 2016 (same as 7), or 2017 (same as 8) to use the year-based naming.
 
         // "sourceType": "script",                 // set to "script" (default) or "module" if your code is in ECMAScript modules.

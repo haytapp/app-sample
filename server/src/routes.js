@@ -1,13 +1,14 @@
 // This file will contain all the routes defined in the App
+// is used to keep organized with their respective controllers
+
+// The list of available controllers for this app includes:
+const AuthenticationController = require('./controllers/AuthenticationController')
+
+const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
+
 module.exports = (app) => {
-    app.get('/status', (req,res) => {
-        res.send({
-          message: "Status: I'm doing fine! How about you?"
-        })
-      })    
-    app.post('/register', (req,res) => {
-        res.send({
-          message: `Hello ${req.body.email}! Your user was registered - Cheers!`
-        })
-      })
+    app.post('/register',
+      // Before hit the controller, this function will perform the validation
+      AuthenticationControllerPolicy.register,
+      AuthenticationController.register)
 }
