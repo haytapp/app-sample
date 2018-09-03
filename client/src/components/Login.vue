@@ -3,20 +3,13 @@
     <v-flex xs6 offset-xs3>
       <div class="white elevation-2">
         <v-toolbar flat dense class="blue" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
+          <v-toolbar-title>Login</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
           <form>
             <v-text-field
               v-model="email"
               label="Email"
-              single-line
-              solo
-            ></v-text-field>
-            <br>
-            <v-text-field
-              v-model="name"
-              label="Name"
               single-line
               solo
             ></v-text-field>
@@ -33,7 +26,7 @@
               <v-btn
                 dark
                 class = "blue"
-                @click="register">Register
+                @click="login">Login
               </v-btn>
             </form>
           </div>
@@ -43,23 +36,21 @@
 </template>
 
 <script>
-// The authentication service will send the data captured on the
-// client to the server
 import AuthenticationService from '@/services/AuthenticationService'
+
 export default {
   data () {
     return {
       email: '',
-      name: '',
       password: '',
       error: null
     }
   },
   methods: {
     // await and async are used instead of promises...
-    async register () {
+    async login () {
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
@@ -74,8 +65,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.error {
-  color: red;
-  font-size: 14px
-}
 </style>

@@ -10,5 +10,9 @@ module.exports = (app) => {
     app.post('/register',
       // Before hit the controller, this function will perform the validation
       AuthenticationControllerPolicy.register,
-      AuthenticationController.register)
+      AuthenticationController.register),
+
+      app.post('/login',
+      // Before hit the controller, this function will perform the validation      
+      AuthenticationController.register)      
 }

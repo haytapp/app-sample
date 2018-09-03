@@ -11,5 +11,9 @@ module.exports = {
             port: 3306,   
             operatorsAliases: false
         }
+    },
+    authentication: {
+        // this token is only know by the server
+        jwtSecret: 'shhEsmiSecreto!'
     }
 }

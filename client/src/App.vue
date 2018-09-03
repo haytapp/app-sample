@@ -1,12 +1,26 @@
 <template>
   <div id="app">
-    <router-view/>
+    <!-- Adding the Vuetify CDN -->
+    <v-app>
+      <page-header />
+      <main>
+        <v-container fluid>
+          <router-view/>
+        </v-container>
+      </main>
+    </v-app>
   </div>
 </template>
 
 <script>
+// The page header
+import PageHeader from '@/components/Header.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    PageHeader
+  }
+
 }
 </script>
 
