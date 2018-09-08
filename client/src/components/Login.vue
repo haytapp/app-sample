@@ -17,6 +17,7 @@
             <v-text-field
               v-model="password"
               label="Password"
+              type="password"
               single-line
               solo
             ></v-text-field>
@@ -50,10 +51,13 @@ export default {
     // await and async are used instead of promises...
     async login () {
       try {
-        await AuthenticationService.login({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
+        // Calling the Vuex methods to update the token parameter
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (err) {
         // this block will display the error response from the server
         this.error = err.response.data.error

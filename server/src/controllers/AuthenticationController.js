@@ -17,7 +17,13 @@ module.exports = {
     async register (req, res) {
         try {
             const user = await User.create(req.body)
-            res.send(user.toJSON())
+            const userJson = user.toJSON()
+
+            res.send({
+              user: userJson,
+              token: jwtSignUser(userJson)    
+            })
+
         } catch (err) {
             res.status(400).send({
                 error: 'This emails is already used in an account'
@@ -26,7 +32,7 @@ module.exports = {
     },
 
     // Process the login
-    async register (req, res) {
+    async login (req, res) {
         try {
             // first we check the email, using findOne method
             const {email, password} = req.body
@@ -41,10 +47,11 @@ module.exports = {
                   error: 'There is no account with the email provided'
               })
             }
-            const isPasswordValid = password === user.password
+
+            const isPasswordValid = await user.comparePassword(password)
             if (!isPasswordValid) {
               return res.status(403).send({
-                error: 'There password provided is incorrect'
+                error: 'The password provided is incorrect'
               })
             }
             const userJson = user.toJSON()            

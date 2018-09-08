@@ -6,7 +6,9 @@
           <v-toolbar-title>Register</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
-          <form>
+          <form
+            name="tab-tracker-register-form"
+            autocomplete="off">
             <v-text-field
               v-model="email"
               label="Email"
@@ -24,6 +26,7 @@
             <v-text-field
               v-model="password"
               label="Password"
+              type="password"
               single-line
               solo
             ></v-text-field>
@@ -59,10 +62,14 @@ export default {
     // await and async are used instead of promises...
     async register () {
       try {
-        await AuthenticationService.register({
+        const response = await AuthenticationService.register({
           email: this.email,
+          name: this.name,
           password: this.password
         })
+        // Calling the Vuex methods to update the token parameter
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
       } catch (err) {
         // this block will display the error response from the server
         this.error = err.response.data.error
