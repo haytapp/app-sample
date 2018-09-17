@@ -1,44 +1,39 @@
 <template>
   <v-layout column>
     <v-flex xs6 offset-xs3>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="blue" dark>
-          <v-toolbar-title>Login</v-toolbar-title>
-        </v-toolbar>
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <form>
-            <v-text-field
-              v-model="email"
-              label="Email"
-              single-line
-              solo
-            ></v-text-field>
-            <br>
-            <v-text-field
-              v-model="password"
-              label="Password"
-              type="password"
-              single-line
-              solo
-            ></v-text-field>
-            <br>
-              <div class="error" v-html="error" />
-            <br>
-              <v-btn
-                dark
-                class = "blue"
-                @click="login">Login
-              </v-btn>
-            </form>
-          </div>
-      </div>
+      <panel title="Log In">
+        <form>
+          <v-text-field
+            v-model="email"
+            label="Email"
+            single-line
+            solo
+          ></v-text-field>
+          <br>
+          <v-text-field
+            v-model="password"
+            label="Password"
+            type="password"
+            single-line
+            solo
+          ></v-text-field>
+          <br>
+            <div class="error" v-html="error" />
+          <br>
+            <v-btn
+              dark
+              class = "blue"
+              @click="login">Login
+            </v-btn>
+        </form>
+      </panel>
       </v-flex>
   </v-layout>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
-
+import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -46,6 +41,9 @@ export default {
       password: '',
       error: null
     }
+  },
+  components: {
+    Panel
   },
   methods: {
     // await and async are used instead of promises...

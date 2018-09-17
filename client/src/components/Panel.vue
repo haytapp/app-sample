@@ -14,11 +14,9 @@
 
 <script>
 export default {
-  data () {
-    return {
-      title: 'Panel Title'
-    }
-  }
+  props: [
+    'title'
+  ]
 }
 </script>
 

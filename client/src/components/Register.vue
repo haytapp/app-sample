@@ -1,46 +1,41 @@
 <template>
   <v-layout column>
     <v-flex xs6 offset-xs3>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="blue" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <form
-            name="tab-tracker-register-form"
-            autocomplete="off">
-            <v-text-field
-              v-model="email"
-              label="Email"
-              single-line
-              solo
-            ></v-text-field>
-            <br>
-            <v-text-field
-              v-model="name"
-              label="Name"
-              single-line
-              solo
-            ></v-text-field>
-            <br>
-            <v-text-field
-              v-model="password"
-              label="Password"
-              type="password"
-              single-line
-              solo
-            ></v-text-field>
-            <br>
-              <div class="error" v-html="error" />
-            <br>
-              <v-btn
-                dark
-                class = "blue"
-                @click="register">Register
-              </v-btn>
-            </form>
-          </div>
-      </div>
+      <panel title="Register">
+        <form
+          name="tab-tracker-register-form"
+          autocomplete="off">
+          <v-text-field
+            v-model="email"
+            label="Email"
+            single-line
+            solo
+          ></v-text-field>
+          <br>
+          <v-text-field
+            v-model="name"
+            label="Name"
+            single-line
+            solo
+          ></v-text-field>
+          <br>
+          <v-text-field
+            v-model="password"
+            label="Password"
+            type="password"
+            single-line
+            solo
+          ></v-text-field>
+          <br>
+            <div class="error" v-html="error" />
+          <br>
+            <v-btn
+              dark
+              class = "blue"
+              @click="register">Register
+            </v-btn>
+        </form>
+      </panel>
       </v-flex>
   </v-layout>
 </template>
@@ -49,6 +44,7 @@
 // The authentication service will send the data captured on the
 // client to the server
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -57,6 +53,9 @@ export default {
       password: '',
       error: null
     }
+  },
+  components: {
+    Panel
   },
   methods: {
     // await and async are used instead of promises...

@@ -3,7 +3,9 @@
 
 // The list of available controllers for this app includes:
 const AuthenticationController = require('./controllers/AuthenticationController')
+const SongsController = require('./controllers/SongsController')
 
+// List of available policies
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 
 module.exports = (app) => {
@@ -12,7 +14,13 @@ module.exports = (app) => {
       AuthenticationControllerPolicy.register,
       AuthenticationController.register),
 
-      app.post('/login',
+    app.post('/login',
       // Before hit the controller, this function will perform the validation      
-      AuthenticationController.login)      
+      AuthenticationController.login),
+
+    app.get('/songs',
+      SongsController.index),
+
+    app.post('/songs',
+      SongsController.post)      
 }
